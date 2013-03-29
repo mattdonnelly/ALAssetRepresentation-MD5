@@ -35,7 +35,7 @@ static const int BUFFER_SIZE = 4096;
 	CFStringRef result = NULL;
 	
 	CC_MD5_CTX hashObject;
-	CC_MD5_Init(&hashObject);
+    CC_MD5_Init(&hashObject);
 		
 	uint8_t *buffer = (uint8_t*)malloc(BUFFER_SIZE);
 	
@@ -54,14 +54,14 @@ static const int BUFFER_SIZE = 4096;
 	}
 	
 	unsigned char digest[CC_MD5_DIGEST_LENGTH];
-	CC_MD5_Final(digest, &hashObject);
-
-	char hash[2 * sizeof(digest) + 1];
-	for (size_t i = 0; i < sizeof(digest); ++i) {
-	    snprintf(hash + (2 * i), 3, "%02x", (int)(digest[i]));
-	}
+    CC_MD5_Final(digest, &hashObject);
+        
+    char hash[2 * sizeof(digest) + 1];
+    for (size_t i = 0; i < sizeof(digest); ++i) {
+        snprintf(hash + (2 * i), 3, "%02x", (int)(digest[i]));
+    }
 	
-	result = CFStringCreateWithCString(kCFAllocatorDefault, (const char *)hash, kCFStringEncodingUTF8);
+    result = CFStringCreateWithCString(kCFAllocatorDefault, (const char *)hash, kCFStringEncodingUTF8);
 	
 	return (NSString *)result;
 }
